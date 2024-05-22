@@ -1,5 +1,6 @@
 /*
 This file checks for the presence of various tables in the dev space.
+It will throw an error if expected tables are missing.
 */
 
 DECLARE @infohub varchar(15);
