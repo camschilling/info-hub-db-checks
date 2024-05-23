@@ -19,7 +19,7 @@ WITH
     AS
 
     (
-            SELECT @infohub AS object_space, 'EDC' AS object_name
+            SELECT @infohub AS object_space, 'EDC' AS object_name -- this may not be needed?
         UNION ALL
             SELECT @infohub AS object_space, 'Mortality FHIR' AS object_name
         UNION ALL

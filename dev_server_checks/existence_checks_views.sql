@@ -11,15 +11,19 @@ DISTRIBUTION = HASH
 ([object_name])
 )
 AS
-WITH view_list AS(
-    SELECT 'Course Dimension' AS object_name
-    UNION ALL
-    SELECT 'Course Completion Fact' AS object_name
-    UNION ALL
-    SELECT 'Pathways Count' AS object_name
-    UNION ALL
-    SELECT 'GeneralStaff' AS object_name
-)
+WITH
+    view_list
+    AS
+    
+    (
+                                    SELECT 'Course Dimension' AS object_name
+        UNION ALL
+            SELECT 'Course Completion Fact' AS object_name
+        UNION ALL
+            SELECT 'Pathways Count' AS object_name
+        UNION ALL
+            SELECT 'GeneralStaff' AS object_name
+    )
 ,
     view_summary
     AS
