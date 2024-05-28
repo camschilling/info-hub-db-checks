@@ -16,7 +16,7 @@ WITH
     AS
     
     (
-                                    SELECT 'Course Dimension' AS object_name
+            SELECT 'Course Dimension' AS object_name
         UNION ALL
             SELECT 'Course Completion Fact' AS object_name
         UNION ALL
