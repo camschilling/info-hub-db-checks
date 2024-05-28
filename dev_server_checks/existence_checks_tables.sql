@@ -3,8 +3,6 @@ This file checks for the presence of various tables in the dev space.
 It will throw an error if expected tables are missing.
 */
 
-DECLARE @infohub varchar(15);
-SET @infohub = 'infohub';
 
 CREATE TABLE infohub.#table_inventory 
 WITH
@@ -19,23 +17,23 @@ WITH
     AS
 
     (
-            SELECT @infohub AS object_space, 'EDC' AS object_name
+            SELECT 'infohub' AS object_space, 'EDC' AS object_name
         UNION ALL
-            SELECT @infohub AS object_space, 'Mortality FHIR' AS object_name
+            SELECT 'infohub' AS object_space, 'Mortality FHIR' AS object_name
         UNION ALL
-            SELECT @infohub AS object_space, 'LDX Intermediaries' AS object_name
+            SELECT 'infohub' AS object_space, 'LDX Intermediaries' AS object_name
         UNION ALL
-            SELECT @infohub AS object_space, 'ProjectCount' AS object_name
+            SELECT 'infohub' AS object_space, 'ProjectCount' AS object_name
         UNION ALL
-            SELECT @infohub AS object_space, 'LDX ETOR' AS object_name
+            SELECT 'infohub' AS object_space, 'LDX ETOR' AS object_name
         UNION ALL
-            SELECT @infohub AS object_space, 'Surveys' AS object_name
+            SELECT 'infohub' AS object_space, 'Surveys' AS object_name
         UNION ALL
-            SELECT @infohub AS object_space, 'PHA eICR' AS object_name
+            SELECT 'infohub' AS object_space, 'PHA eICR' AS object_name
         UNION ALL
-            SELECT @infohub AS object_space, 'PHDS Overall' AS object_name
+            SELECT 'infohub' AS object_space, 'PHDS Overall' AS object_name
         UNION ALL
-            SELECT @infohub AS object_space, 'NNDSS GenV2' AS object_name
+            SELECT 'infohub' AS object_space, 'NNDSS GenV2' AS object_name
     )
 ,
     table_summary
@@ -67,3 +65,4 @@ END
 
 
 DROP TABLE infohub.#table_inventory;
+GO

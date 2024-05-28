@@ -71,4 +71,5 @@ WITH counts AS (
 )
 SELECT *
 , CASE WHEN expected_cnt = actual_cnt THEN 'same' ELSE 'different' END AS cnt_eval 
-FROM counts
+FROM counts;
+GO
