@@ -55,7 +55,7 @@ WITH counts AS (
     FROM [infohub].[Pathways Count]
     UNION ALL
     SELECT 'Course Completion Fact' AS dat_name
-    , 6402 AS expected_cnt
+    , 6413 AS expected_cnt
     , COUNT(*) AS cnt_records
     FROM [infohub].[Course Completion Fact]
     UNION ALL
