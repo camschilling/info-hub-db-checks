@@ -13,7 +13,7 @@ NNDSS GenV2
 Pathways Count
 PHA eICR
 ProjectCount
-Surveys
+Surveys (only 1 column)
 
 Notably, the PHDS Overall Table is not included
 */
