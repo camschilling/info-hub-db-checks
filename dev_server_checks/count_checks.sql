@@ -1,3 +1,13 @@
+/*
+This file produces a temp table that can be reviewed by a SME to evaluate whether data expectation are met.
+The counts for many data files will change over time, but this is helpful in understanding whether certain files
+have decreased their number of records.
+As of 6/4/24, all tables/views evaluated should have the same number of records as their expected count
+except for the GeneralStaff view and the 3 Data Academy Views. 
+These 4 data objects have their upstream data maintained by EDAV. 
+They key for these 4 data views is that they are the same counts between Dev and Prod.
+*/
+
 WITH counts AS (
     SELECT 'EDC' AS dat_name
     , 8 AS expected_cnt
