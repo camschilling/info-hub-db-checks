@@ -23,3 +23,9 @@ grouped AS(
 SELECT COUNT(*) AS invalid_dupe_count_should_be_zero
 FROM grouped 
 WHERE rec_cnt > 1; 
+
+/*
+SELECT COUNT(*) AS record_cnt_should_be_same FROM [infohub].[staff_dimension]
+UNION ALL 
+SELECT COUNT(*) AS record_cnt_should_be_same FROM [lookupview].[GeneralStaff] WHERE [RecordStatusCode] = '';
+*/

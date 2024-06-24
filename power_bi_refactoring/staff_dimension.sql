@@ -55,8 +55,17 @@ in
 Accompanied data assertion found in: dev_server_checks\lookupview_generalstaff_checks.sql
 */
 
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
 
+IF OBJECT_ID('infohub.staff_dimension', 'V') IS NOT NULL
+    DROP VIEW [infohub].[staff_dimension]
+GO
 
+CREATE VIEW [infohub].[staff_dimension] 
+AS
 WITH valid_general_staff_records AS(
     SELECT * FROM [lookupview].[GeneralStaff]
     WHERE [RecordStatusCode] = ''
@@ -83,7 +92,8 @@ FROM distinct_admin_codes
     LEFT JOIN admin_codes_mapped_to_cio AS a
     ON g.[AdminCode] = a.[AdminCode]
 )
-SELECT COUNT(*) FROM joined;
+SELECT * FROM joined;
+
 
 
 
