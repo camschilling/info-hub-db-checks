@@ -20,7 +20,7 @@ AS SELECT DISTINCT
 		,[ProficiencSort]
 		,[Course Name] + ' - ' + [Curriculum Name] AS [Course Key]
 
-	FROM [admin].[DataAcademyCompletedCourses];
+	FROM [infohub].[DataAcademyCompletedCourses];
 GO
 
 SELECT COUNT(*) FROM [infohub].[Course Dimension];

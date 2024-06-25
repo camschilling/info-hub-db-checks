@@ -19,7 +19,7 @@ AS SELECT
 		,[Course Name]
 		,[Completion Date]
 		,[Course Name] + ' - ' + [Curriculum Name] AS [Course Key]
-	FROM [admin].[DataAcademyCompletedCourses];
+	FROM [infohub].[DataAcademyCompletedCourses];
 GO
 
 SELECT COUNT(*) FROM [infohub].[Course Completion Fact];

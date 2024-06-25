@@ -18,7 +18,7 @@ AS SELECT
 		SELECT 
 			[Source].[Group Pathways],
 			[Source].[Course Count]
-		FROM [admin].[DataAcademyCompletedPathways] as [Source]
+		FROM [infohub].[DataAcademyCompletedPathways] as [Source]
 		WHERE [Source].[Pathway Completion Status] = 'Complete'
 	) 
 	AS [Completes]
