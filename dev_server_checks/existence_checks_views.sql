@@ -21,6 +21,10 @@ WITH
             SELECT 'Course Completion Fact' AS object_name
         UNION ALL
             SELECT 'Pathways Count' AS object_name
+        UNION ALL 
+            SELECT 'EDAVProjectsByMonthTrend' AS object_name
+        UNION ALL 
+            SELECT 'EDAVProjectsByYearTrend' AS object_name
         UNION ALL
             SELECT 'GeneralStaff' AS object_name
     )
