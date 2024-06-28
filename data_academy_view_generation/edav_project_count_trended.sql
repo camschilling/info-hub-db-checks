@@ -18,6 +18,7 @@ GO
 CREATE TABLE infohub.EDAVProjectCountMonthsLookup (
   dt DATE
 )
+-- Change me if we need a different data window
 DECLARE @dIncr DATE = '2020-01-01'
 DECLARE @dEnd DATE = '2025-01-01'
 
@@ -28,7 +29,7 @@ BEGIN
 END
 
 
---summarize by ProjectCount month
+--summarize ProjectCount by month
 IF OBJECT_ID('infohub.EDAVProjectsByMonthTrend', 'V') IS NOT NULL
     DROP VIEW [infohub].[EDAVProjectsByMonthTrend]
 GO
@@ -70,6 +71,7 @@ AS
 GO
 
 
-
+/*
 SELECT * FROM [infohub].[EDAVProjectsByMonthTrend] ORDER BY mo;
 SELECT * FROM [infohub].[EDAVProjectsByYearTrend] ORDER BY yr;
+*/
