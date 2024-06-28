@@ -39,13 +39,13 @@ AS
 -- left join ProjectCount using first of month
     WITH active_projects_by_month AS(
         SELECT months.dt, projects.*
-        FROM infohub.EDAVProjectCountMonthsLookup AS months
-        LEFT JOIN infohub.ProjectCount AS projects
-        ON months.dt BETWEEN projects.ProjectCreatedDate AND COALESCE(projects.ProjectClosedDate, '2099-01-01')
+        FROM [infohub].[EDAVProjectCountMonthsLookup] AS months
+        LEFT JOIN [infohub].[ProjectCount] AS projects
+        ON [months].[dt] BETWEEN [projects].[ProjectCreatedDate] AND COALESCE([projects].[ProjectClosedDate], '2099-01-01')
     )
-    SELECT dt AS mo, SUM(ProjectCount) AS active_project_count_sum
+    SELECT [dt] AS mo, [Center], [Division], SUM(ProjectCount) AS active_project_count_sum
     FROM active_projects_by_month
-    GROUP BY dt;
+    GROUP BY [dt], [Center], [Division];
 GO
 
 -- summarize ProjectCount by year
@@ -57,21 +57,23 @@ CREATE VIEW [infohub].[EDAVProjectsByYearTrend]
 AS
     WITH years AS(
         SELECT DISTINCT YEAR(dt) AS yr 
-        FROM infohub.EDAVProjectCountMonthsLookup
+        FROM [infohub].[EDAVProjectCountMonthsLookup]
     )
     , active_projects_by_year AS(
-        SELECT years.yr, projects.*
+        SELECT [years].[yr], [projects].*
         FROM years
-        LEFT JOIN infohub.ProjectCount AS projects
+        LEFT JOIN [infohub].[ProjectCount] AS projects
         ON years.yr BETWEEN YEAR(projects.ProjectCreatedDate) AND COALESCE(YEAR(projects.ProjectClosedDate), 2099)
     )
-    SELECT yr, SUM(ProjectCount) AS project_count_sum
+    SELECT [yr], [Center], [Division], SUM(ProjectCount) AS active_project_count_sum
     FROM active_projects_by_year
-    GROUP BY yr;
+    GROUP BY [yr], [Center], [Division];
 GO
 
 
 /*
-SELECT * FROM [infohub].[EDAVProjectsByMonthTrend] ORDER BY mo;
-SELECT * FROM [infohub].[EDAVProjectsByYearTrend] ORDER BY yr;
+SELECT * FROM [infohub].[EDAVProjectsByMonthTrend] ORDER BY [mo], [Center], [Division];
+SELECT * FROM [infohub].[EDAVProjectsByYearTrend] ORDER BY [yr], [Center], [Division];
+
+SELECT [yr], SUM([active_project_count_sum]) FROM [infohub].[EDAVProjectsByYearTrend] GROUP BY yr order by yr;
 */
