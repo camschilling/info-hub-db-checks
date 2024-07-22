@@ -75,24 +75,40 @@ WITH valid_general_staff_records AS(
     [AdminCodeHierarchy],
     [AdminCode]
     FROM valid_general_staff_records -- This added logic here makes the result deterministic irrespective of ordering
+),
+CIO_indices_prep AS( -- here we identify where slash characters are
+    SELECT 
+    [AdminCode]
+    , AdminCodeHierarchy
+    , CHARINDEX('\', [AdminCodeHierarchy]) + 1 AS index_1st
+    , CHARINDEX('\', [AdminCodeHierarchy], CHARINDEX('\', [AdminCodeHierarchy]) + 1) AS index_2nd
+    , LEN([AdminCodeHierarchy]) AS str_length
+    FROM distinct_admin_codes
+)
+, CIO_indices_prep_resolved AS( -- we resolve missing slash characters
+    SELECT *,
+    CASE WHEN index_2nd = 0 THEN str_length ELSE index_2nd END AS index_2nd_resolve
+    FROM CIO_indices_prep
 )
 , admin_codes_mapped_to_cio AS(
     SELECT 
     [AdminCode]
+    , AdminCodeHierarchy
     , SUBSTRING(
-        [AdminCodeHierarchy], 
-        CHARINDEX('\', [AdminCodeHierarchy]) + 1, 
-        CHARINDEX('\', [AdminCodeHierarchy], CHARINDEX('\', [AdminCodeHierarchy]) + 1) - CHARINDEX('\', [AdminCodeHierarchy]) - 1
+        [AdminCodeHierarchy],
+        index_1st,
+        index_2nd_resolve - index_1st
     ) AS CIO
-FROM distinct_admin_codes
+FROM CIO_indices_prep_resolved
 )
 , joined AS(
-    SELECT g.[UserID], a.[CIO]
+    SELECT g.[UserID], g.[LastName], g.[FirstName], g.[MiddleName], a.[CIO]
     FROM valid_general_staff_records AS g
     LEFT JOIN admin_codes_mapped_to_cio AS a
     ON g.[AdminCode] = a.[AdminCode]
 )
 SELECT * FROM joined;
+
 
 
 
