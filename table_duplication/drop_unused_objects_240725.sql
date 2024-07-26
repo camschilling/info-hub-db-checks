@@ -199,7 +199,29 @@ IF (EXISTS(
    DROP TABLE [infohub].[goal_descripton_test];
 GO
 
-SELECT TOP 10 * FROM [infohub].[goal_descripton_test];
+-- Removing GoalDescription
+IF (EXISTS(
+    SELECT * 
+    FROM INFORMATION_SCHEMA.TABLES 
+    WHERE TABLE_NAME = 'GoalDescription' 
+    AND TABLE_SCHEMA = 'infohub'
+))
+   DROP TABLE [infohub].[GoalDescription];
+GO
 
-SELECT TOP 10 * FROM [infohub].[GoalDescription];
+
+-- Removing eCR_State_Percentages
+IF (EXISTS(
+    SELECT * 
+    FROM INFORMATION_SCHEMA.TABLES 
+    WHERE TABLE_NAME = 'eCR_State_Percentages' 
+    AND TABLE_SCHEMA = 'infohub'
+))
+   DROP TABLE [infohub].[eCR_State_Percentages];
+GO
+
+
+
+
+
 
