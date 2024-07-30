@@ -82,7 +82,8 @@ WITH valid_general_staff_records AS(
     LEFT JOIN active_admin_codes AS a
     ON g.[AdminCode] = a.[AdminCode]
 )
-SELECT * FROM joined;
+SELECT DISTINCT [UserID], [LastName], [FirstName], [MiddleName], [CIO] 
+FROM joined;
 
 
 
