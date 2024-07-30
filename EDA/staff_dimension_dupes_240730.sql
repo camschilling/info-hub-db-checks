@@ -29,3 +29,4 @@ unique_ids 29321
 
 -- QOO3 is the dupe
 SELECT * FROM [lookupview].[GeneralStaff] WHERE [UserID] = 'QOO3';
+
