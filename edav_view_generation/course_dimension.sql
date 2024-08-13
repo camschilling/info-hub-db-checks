@@ -3,8 +3,6 @@ GO
 SET QUOTED_IDENTIFIER ON
 GO
 
-SELECT COUNT(*) FROM [infohub].[Course Dimension];
-
 IF OBJECT_ID('infohub.Course Dimension', 'V') IS NOT NULL
     DROP VIEW [infohub].[Course Dimension]
 GO
