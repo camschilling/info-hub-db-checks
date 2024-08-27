@@ -50,18 +50,30 @@ SELECT TOP 10 * FROM [infohub].[NNDSS GenV2];
 --PHA eICR has [Jurisdiction (AB)] and [Jurisdiction] column. Can likely be used as crosswalk. 
 SELECT TOP 10 * FROM [infohub].[PHA eICR];
 
-SELECT DISTINCT [Jurisdiction (AB)], [Jurisdiction], [Jurisdiction Type] FROM [infohub].[PHA eICR] ORDER BY [Jurisdiction]
 
 
+
+-- maybe add in eCR Hospitals data
 SELECT lookup.*
     , etor.[SPHL has implemented ETOR July 2023] AS ETOR_implemented
+    , etor.Jurisdiction AS etor_jurisdiction 
     , CASE WHEN etor.Jurisdiction IS NOT NULL THEN 1 ELSE 0 END AS etor_reported
     , intermediaries.[AIMS]
-    , intermediaries.
-    , intermediaries.
+    , intermediaries.[ReportStream]
+    , intermediaries.[HIE**]
+    , intermediaries.Jurisdiction AS intermediaries_jurisdiction
     , CASE WHEN intermediaries.Jurisdiction IS NOT NULL THEN 1 ELSE 0 END AS intermediaries_reported
-    , mortality_fhir.
+    , mortality_fhir.[Status] AS mortality_fhir_status
+    , mortality_fhir.Jurisdiction AS mortlaity_fhir_jurisdiction
     , CASE WHEN mortality_fhir.Jurisdiction IS NOT NULL THEN 1 ELSE 0 END AS mortality_fhir_reported
+    , nndss.[MMG_implementation] AS nndss_mmg_implementation
+    , nndss.[GenV2_Content] AS nndss_genV2_content
+    , nndss.[MMG_implementation] AS nndss_genV2_new_condition
+    , nndss.Jurisdiction AS nndss_jurisdiction
+    , CASE WHEN nndss.Jurisdiction IS NOT NULL THEN 1 ELSE 0 END AS nndss_reported
+    , pha_eicr.[processing] AS pha_eicr_processing
+    , pha_eicr.[Jurisdiction (AB)] AS pha_eicr_jurisdiction
+    , CASE WHEN pha_eicr.[Jurisdiction (AB)] IS NOT NULL THEN 1 ELSE 0 END AS pha_eicr_reported
 FROM [infohub].[jurisdiction_lookup] AS lookup
     FULL OUTER JOIN [infohub].[LDX ETOR] AS etor
         ON lookup.Jurisdiction_Abbreviation = etor.Jurisdiction
@@ -69,5 +81,16 @@ FROM [infohub].[jurisdiction_lookup] AS lookup
         ON lookup.Jurisdiction_Abbreviation = intermediaries.Jurisdiction
     FULL OUTER JOIN [infohub].[Mortality FHIR] AS mortality_fhir
         ON lookup.Jurisdiction_Abbreviation = mortality_fhir.Jurisdiction
+    FULL OUTER JOIN [infohub].[NNDSS GenV2] AS nndss
+        ON lookup.Jurisdiction_Abbreviation = 
+            CASE WHEN nndss.Jurisdiction = 'FSM/FM' THEN 'FM'
+            WHEN nndss.Jurisdiction = 'RMI/MH' THEN 'MH'
+            WHEN nndss.Jurisdiction = 'USVI/VI' THEN 'VI'
+            WHEN nndss.Jurisdiction = 'CNMI/MP' THEN 'MP'
+            ELSE nndss.Jurisdiction
+            END
+    FULL OUTER JOIN [infohub].[PHA eICR] AS pha_eicr
+        ON lookup.Jurisdiction_Abbreviation = pha_eicr.[Jurisdiction (AB)]
 
+-- need a DQ check that [Jurisdiction] is never null
 
