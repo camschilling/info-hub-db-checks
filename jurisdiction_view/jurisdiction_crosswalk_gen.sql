@@ -18,7 +18,7 @@ INSERT INTO [infohub].[jurisdiction_lookup] ([Jurisdiction], [Jurisdiction_Abbre
 INSERT INTO [infohub].[jurisdiction_lookup] ([Jurisdiction], [Jurisdiction_Abbreviation], [Jurisdiction_Type]) VALUES ('Arizona', 'AZ', 'State/DC');
 INSERT INTO [infohub].[jurisdiction_lookup] ([Jurisdiction], [Jurisdiction_Abbreviation], [Jurisdiction_Type]) VALUES ('Arkansas', 'AR', 'State/DC');
 INSERT INTO [infohub].[jurisdiction_lookup] ([Jurisdiction], [Jurisdiction_Abbreviation], [Jurisdiction_Type]) VALUES ('California', 'CA', 'State/DC');
-INSERT INTO [infohub].[jurisdiction_lookup] ([Jurisdiction], [Jurisdiction_Abbreviation], [Jurisdiction_Type]) VALUES ('Chicago', 'CA', 'State/DC');
+INSERT INTO [infohub].[jurisdiction_lookup] ([Jurisdiction], [Jurisdiction_Abbreviation], [Jurisdiction_Type]) VALUES ('Chicago', 'CHI', 'City');
 INSERT INTO [infohub].[jurisdiction_lookup] ([Jurisdiction], [Jurisdiction_Abbreviation], [Jurisdiction_Type]) VALUES ('Colorado', 'CO', 'State/DC');
 INSERT INTO [infohub].[jurisdiction_lookup] ([Jurisdiction], [Jurisdiction_Abbreviation], [Jurisdiction_Type]) VALUES ('Connecticut', 'CT', 'State/DC');
 INSERT INTO [infohub].[jurisdiction_lookup] ([Jurisdiction], [Jurisdiction_Abbreviation], [Jurisdiction_Type]) VALUES ('Delaware', 'DE', 'State/DC');
@@ -68,7 +68,7 @@ INSERT INTO [infohub].[jurisdiction_lookup] ([Jurisdiction], [Jurisdiction_Abbre
 INSERT INTO [infohub].[jurisdiction_lookup] ([Jurisdiction], [Jurisdiction_Abbreviation], [Jurisdiction_Type]) VALUES ('South Dakota', 'SD', 'State/DC');
 INSERT INTO [infohub].[jurisdiction_lookup] ([Jurisdiction], [Jurisdiction_Abbreviation], [Jurisdiction_Type]) VALUES ('Tennessee', 'TN', 'State/DC');
 INSERT INTO [infohub].[jurisdiction_lookup] ([Jurisdiction], [Jurisdiction_Abbreviation], [Jurisdiction_Type]) VALUES ('Texas', 'TX', 'State/DC');
-INSERT INTO [infohub].[jurisdiction_lookup] ([Jurisdiction], [Jurisdiction_Abbreviation], [Jurisdiction_Type]) VALUES ('U.S. Virgin Islands', 'VI', 'State/DC');
+INSERT INTO [infohub].[jurisdiction_lookup] ([Jurisdiction], [Jurisdiction_Abbreviation], [Jurisdiction_Type]) VALUES ('U.S. Virgin Islands', 'VI', 'Territory');
 INSERT INTO [infohub].[jurisdiction_lookup] ([Jurisdiction], [Jurisdiction_Abbreviation], [Jurisdiction_Type]) VALUES ('Utah', 'UT', 'State/DC');
 INSERT INTO [infohub].[jurisdiction_lookup] ([Jurisdiction], [Jurisdiction_Abbreviation], [Jurisdiction_Type]) VALUES ('Vermont', 'VT', 'State/DC');
 INSERT INTO [infohub].[jurisdiction_lookup] ([Jurisdiction], [Jurisdiction_Abbreviation], [Jurisdiction_Type]) VALUES ('Virginia', 'VA', 'State/DC');
